@@ -1,4 +1,28 @@
 Rails.application.routes.draw do
+
+
+  # Routes for the Follow request resource:
+
+  # CREATE
+  post("/insert_follow_request", { :controller => "follow_requests", :action => "create" })
+          
+  # READ
+  get("/follow_requests", { :controller => "follow_requests", :action => "index" })
+  
+  get("/follow_requests/:path_id", { :controller => "follow_requests", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_follow_request/:path_id", { :controller => "follow_requests", :action => "update" })
+  
+  # DELETE
+  get("/delete_follow_request/:path_id", { :controller => "follow_requests", :action => "destroy" })
+
+  #------------------------------
+
+  get("/users", { :controller => "application", :action => "index" })
+  get("/", { :controller => "application", :action => "index" })
+
   # Routes for the Like resource:
 
   # CREATE
@@ -15,25 +39,6 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_like/:path_id", { :controller => "likes", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Followrequest resource:
-
-  # CREATE
-  post("/insert_followrequest", { :controller => "followrequests", :action => "create" })
-          
-  # READ
-  get("/followrequests", { :controller => "followrequests", :action => "index" })
-  
-  get("/followrequests/:path_id", { :controller => "followrequests", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_followrequest/:path_id", { :controller => "followrequests", :action => "update" })
-  
-  # DELETE
-  get("/delete_followrequest/:path_id", { :controller => "followrequests", :action => "destroy" })
 
   #------------------------------
 
