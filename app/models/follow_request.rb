@@ -11,7 +11,25 @@
 #
 class FollowRequest < ApplicationRecord
 
-  belongs_to(:recipient, { :required => true, :class_name => "User", :foreign_key => "recipient_id" })
-  validates(:status, { :presence => true })
-  validates(:recipient_id, { :presence => true })
+  def sender
+    my_sender_id = self.sender_id
+
+    matching_users = User.where({ :id => my_sender_id })
+
+    the_user = matching_users.at(0)
+
+    return the_user
+  end
+
+  def recipient
+    my_recipient_id = self.recipient_id
+
+    matching_users = User.where({ :id => my_recipient_id })
+
+    the_user = matching_users.at(0)
+
+    return the_user
+  end
+  #validates(:status, { :presence => true })
+ # validates(:recipient_id, { :presence => true })
 end

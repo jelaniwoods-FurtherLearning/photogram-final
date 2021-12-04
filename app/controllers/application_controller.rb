@@ -21,6 +21,85 @@ class ApplicationController < ActionController::Base
     matching_users = User.all
 
     @list_of_users = matching_users.order({ :username => :asc})
-    render({ :template => "/index.html.erb" })
+    render({ :template => "user/index.html.erb" })
   end
+
+
+  
+def show
+  
+  # Parameters: {"path_username"=>"anisa"}
+   url_username = params.fetch("path_username")
+ 
+   matching_usernames = User.where({:username => url_username})
+ 
+   @the_user = matching_usernames.at(0)
+ 
+   if @the_user == nil
+     redirect_to("/404")
+   else
+ 
+   render({:template => "user/show.html.erb"})
+   end
+ 
+ end
+
+ def liked_photos
+  
+  # Parameters: {"path_username"=>"anisa"}
+   url_username = params.fetch("path_username")
+ 
+   matching_usernames = User.where({:username => url_username})
+ 
+   @the_user = matching_usernames.at(0)
+ 
+   if @the_user == nil
+     redirect_to("/404")
+   else
+ 
+   render({:template => "user/liked_photos.html.erb"})
+   end
+ 
+ end
+
+
+ def feed
+  
+  # Parameters: {"path_username"=>"anisa"}
+   url_username = params.fetch("path_username")
+ 
+   matching_usernames = User.where({:username => url_username})
+ 
+   @the_user = matching_usernames.at(0)
+
+
+ 
+   if @the_user == nil
+     redirect_to("/404")
+   else
+ 
+   render({:template => "user/feed.html.erb"})
+   end
+ 
+ end
+
+
+ def discover
+  
+  # Parameters: {"path_username"=>"anisa"}
+   url_username = params.fetch("path_username")
+ 
+   matching_usernames = User.where({:username => url_username})
+ 
+   @the_user = matching_usernames.at(0)
+ 
+   if @the_user == nil
+     redirect_to("/404")
+   else
+ 
+   render({:template => "user/discover.html.erb"})
+   end
+ 
+ end
+
 end
